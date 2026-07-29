@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Spa | Clínica Dermatológica y Centro Facial en CDMX</title>
+    
+    <!-- Google Fonts: Playfair Display (Elegancia) + Montserrat (Legibilidad Clínica) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           1. VARIABLES CSS & PALETA DE COLORES
+           ========================================================================== */
+        :root {
+            --primary-color: #2D4A3E;        /* Verde Eucalipto Oscuro: Salud médica y sobriedad */
+            --primary-hover: #1E332B;
+            --accent-color: #C5A059;         /* Oro Suave / Arena: Toque de lujo */
+            --accent-hover: #A88544;
+            --bg-light: #F9F8F6;             /* Blanco cálido/crema */
+            --bg-card: #FFFFFF;              /* Blanco puro */
+            --bg-alt: #F2EFE9;               /* Neutro secundario */
+            --text-dark: #2B2B2B;            /* Gris carbón para contraste */
+            --text-muted: #6B7280;           /* Gris medio */
+            --border-color: #E5E0D8;
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 10px 25px rgba(45,74,62,0.08);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.12);
+
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* RESET & BASE */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* TIPOGRAFÍA GLOBAL */
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            color: var(--primary-color);
+            line-height: 1.2;
+            font-weight: 600;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-family: var(--font-body);
+            font-size: 0.825rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto 48px;
+            font-weight: 400;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* BOTONES (CTA) */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: #FFFFFF;
+            transform: translateY(-2px);
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: #FFFFFF;
+        }
+
+        .btn-accent:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ==========================================================================
+           2. HEADER & NAVEGACIÓN STICKY
+           ========================================================================== */
+        .header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(249, 248, 246, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-decoration: none;
+        }
+
+        /* Control estricto del tamaño de la imagen del logo */
+        .logo-img {
+            height: 48px;
+            width: auto;
+            max-width: 180px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-link {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Checkbox Hack para Menú Mobile (Sin JS) */
+        .mobile-toggle {
+            display: none;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        /* ==========================================================================
+           3. HERO SECTION
+           ========================================================================== */
+        .hero {
+            padding: 80px 0 100px;
+            background: linear-gradient(135deg, var(--bg-light) 60%, var(--bg-alt) 100%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.3rem, 5vw, 3.6rem);
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 36px;
+            font-weight: 400;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .hero-features-list {
+            display: flex;
+            gap: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .hero-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 520px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hero-badge {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            background-color: var(--bg-card);
+            padding: 20px 24px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .badge-icon {
+            width: 44px;
+            height: 44px;
+            background-color: rgba(197, 160, 89, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .badge-text strong {
+            display: block;
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            color: var(--primary-color);
+        }
+
+        .badge-text span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           4. PROPUESTA DE VALOR
+           ========================================================================== */
+        .value-prop {
+            padding: 100px 0;
+            background-color: var(--bg-card);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .value-card {
+            padding: 40px 32px;
+            background-color: var(--bg-light);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .value-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-color);
+        }
+
+        .value-icon {
+            width: 56px;
+            height: 56px;
+            background-color: var(--primary-color);
+            color: #FFFFFF;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 1.5rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .value-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================================================
+           5. TRATAMIENTOS DESTACADOS
+           ========================================================================== */
+        .treatments {
+            padding: 100px 0;
+            background-color: var(--bg-light);
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .treatment-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .treatment-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .treatment-img-box {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .treatment-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .treatment-card:hover .treatment-img {
+            transform: scale(1.05);
+        }
+
+        .treatment-tag {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background-color: rgba(45, 74, 62, 0.9);
+            color: #FFFFFF;
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .treatment-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .treatment-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .treatment-content p {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .treatment-footer {
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .treatment-link {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .treatment-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* ==========================================================================
+           6. EXPERIENCIA DE MARCA
+           ========================================================================== */
+        .experience {
+            padding: 100px 0;
+            background-color: var(--bg-alt);
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .experience-img-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .experience-img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+        }
+
+        .experience-img:nth-child(2) {
+            margin-top: 30px;
+        }
+
+        .experience-bullets {
+            margin: 24px 0 32px;
+        }
+
+        .experience-bullets li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .bullet-icon {
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        /* ==========================================================================
+           7. TESTIMONIOS
+           ========================================================================== */
+        .testimonials {
+            padding: 100px 0;
+            background-color: var(--bg-card);
+        }
+
+        .testimonial-card {
+            background-color: var(--bg-light);
+            padding: 36px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .rating {
+            color: var(--accent-color);
+            margin-bottom: 16px;
+        }
+
+        .testimonial-text {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: 0.95rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+        }
+
+        .author-info span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           8. UBICACIÓN Y MAPA
+           ========================================================================== */
+        .location {
+            padding: 100px 0;
+            background-color: var(--bg-light);
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .location-info {
+            padding: 60px 48px;
+        }
+
+        .info-group {
+            margin-bottom: 28px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(45, 74, 62, 0.08);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-text h4 {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .info-text p, .info-text li {
+            color: var(--text-muted);
+            font-size: 0.925rem;
+        }
+
+        .map-container {
+            width: 100%;
+            min-height: 400px;
+            background-color: #E5E3DF;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* ==========================================================================
+           9. WHATSAPP FLOTANTE PROFESIONAL & DINÁMICO
+           ========================================================================== */
+        .whatsapp-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 9999;
+        }
+
+        .whatsapp-tooltip {
+            background-color: #FFFFFF;
+            color: var(--text-dark);
+            padding: 10px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            transform: translateX(10px);
+            animation: fadeInTooltip 0.5s ease 1s forwards;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .whatsapp-status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 2px rgba(37, 211, 102, 0.2);
+        }
+
+        .whatsapp-float {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.35);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Anillo de pulso animado */
+        .whatsapp-float::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            background-color: #25D366;
+            z-index: -1;
+            animation: whatsappPulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08) translateY(-3px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-float svg {
+            width: 30px;
+            height: 30px;
+            fill: #FFFFFF;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-float:hover svg {
+            transform: rotate(-8deg) scale(1.05);
+        }
+
+        @keyframes whatsappPulse {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.8;
+            }
+            70% {
+                transform: scale(1.4);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInTooltip {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ==========================================================================
+           10. FOOTER
+           ========================================================================== */
+        footer {
+            background-color: var(--primary-color);
+            color: #FFFFFF;
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand .logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            max-width: 300px;
+        }
+
+        .footer-title {
+            color: #FFFFFF;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.825rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-legal a {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ==========================================================================
+           11. RESPONSIVE DESIGN
+           ========================================================================== */
+        @media (max-width: 1024px) {
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 73px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 73px);
+                background-color: var(--bg-light);
+                flex-direction: column;
+                justify-content: center;
+                gap: 24px;
+                transition: var(--transition);
+                padding: 40px;
+                box-shadow: var(--shadow-lg);
+            }
+
+            .mobile-toggle:checked ~ .nav-menu {
+                left: 0;
+            }
+
+            .hero-grid,
+            .experience-grid,
+            .location-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-cta-group, .hero-features-list {
+                justify-content: center;
+            }
+
+            .hero-badge {
+                bottom: 10px;
+                left: 10px;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .location-info {
+                padding: 36px 24px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .whatsapp-tooltip {
+                display: none; /* Oculta el tooltip en pantallas pequeñas */
+            }
+            
+            .whatsapp-container {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="logo (1).png" alt="Face Spa Logo" class="logo-img">
+                <span>Dermatología & Facial</span>
+            </a>
+
+            <input type="checkbox" id="mobile-toggle" class="mobile-toggle">
+            <label for="mobile-toggle" class="hamburger" aria-label="Abrir Menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <nav class="nav-menu">
+                <a href="#inicio" class="nav-link">Inicio</a>
+                <a href="#tratamientos" class="nav-link">Tratamientos</a>
+                <a href="#experiencia" class="nav-link">Nosotros</a>
+                <a href="#testimonios" class="nav-link">Resultados</a>
+                <a href="#ubicacion" class="nav-link">Ubicación</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="https://wa.me/525551031472?text=Hola,%20quisiera%20agendar%20una%20valoración%20en%20Face%20Spa" target="_blank" class="btn btn-primary">Agendar Cita</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="inicio" class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <span class="section-tag">Clínica Dermatológica en CDMX</span>
+                    <h1>La ciencia de una piel sana, la estética de un rostro radiante.</h1>
+                    <p>Tratamientos dermatológicos avanzados y protocolos faciales personalizados en Roma Norte y Polanco. Redescubre la salud de tu piel con tecnología de grado médico.</p>
+                    
+                    <div class="hero-cta-group">
+                        <a href="https://wa.me/525551031472?text=Hola,%20deseo%20agendar%20mi%20valoración%20dermatológica" target="_blank" class="btn btn-primary">Agenda tu Valoración</a>
+                        <a href="#tratamientos" class="btn btn-secondary">Ver Tratamientos</a>
+                    </div>
+
+                    <div class="hero-features-list">
+                        <div class="hero-feature-item">✓ Dermatólogos Certificados</div>
+                        <div class="hero-feature-item">✓ Tecnología FDA/CE</div>
+                    </div>
+                </div>
+
+                <div class="hero-image-wrapper">
+                    <img src="face derma.png" alt="Piel sana y radiante en Face Spa CDMX" class="hero-img">
+                    
+                    <div class="hero-badge">
+                        <div class="badge-icon">✦</div>
+                        <div class="badge-text">
+                            <strong>Diagnóstico Digital 3D</strong>
+                            <span>Análisis del estrato cutáneo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROPUESTA DE VALOR -->
+        <section class="value-prop">
+            <div class="container">
+                <div class="text-center">
+                    <span class="section-tag">¿Por qué elegir Face Spa?</span>
+                    <h2 class="section-title">Dermatología de precisión con enfoque humano</h2>
+                    <p class="section-subtitle">Combinamos el rigor de la medicina dermatológica con el confort de un centro de bienestar urbano.</p>
+                </div>
+
+                <div class="grid-3">
+                    <div class="value-card">
+                        <div class="value-icon">🔬</div>
+                        <h3>Diagnóstico Personalizado</h3>
+                        <p>Evaluamos tu tipo de piel y necesidades con escaneo multiespectral antes de prescribir cualquier tratamiento.</p>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">⚡</div>
+                        <h3>Aparatología Médica</h3>
+                        <p>Aparatos de última generación aprobados por FDA para rejuvenecimiento, manchas y estimulación de colágeno.</p>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">🌿</div>
+                        <h3>Cosmética Clínica Limpia</h3>
+                        <p>Trabajamos exclusivamente con dermocosméticos de grado médico, libres de fragancias irritantes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRATAMIENTOS DESTACADOS -->
+        <section id="tratamientos" class="treatments">
+            <div class="container">
+                <div class="text-center">
+                    <span class="section-tag">Nuestros Protocolos</span>
+                    <h2 class="section-title">Tratamientos Médicos y Estéticos</h2>
+                    <p class="section-subtitle">Soluciones diseñadas para tratar acné, hiperpigmentación y envejecimiento prematuro.</p>
+                </div>
+
+                <div class="grid-4">
+                    <div class="treatment-card">
+                        <div class="treatment-img-box">
+                            <span class="treatment-tag">Popular</span>
+                            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600&q=80" alt="Facial Hydra-Glow" class="treatment-img">
+                        </div>
+                        <div class="treatment-content">
+                            <h3>Hydra-Glow Profundo</h3>
+                            <p>Limpieza médica, extracción e infusión de sueros antioxidantes para luminosidad inmediata.</p>
+                            <div class="treatment-footer">
+                                <a href="https://wa.me/525551031472?text=Informes%20sobre%20Hydra-Glow" class="treatment-link">Agendar protocolo &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="treatment-card">
+                        <div class="treatment-img-box">
+                            <span class="treatment-tag">Renovación</span>
+                            <img src="dermaquimico.png" alt="Peeling Químico" class="treatment-img">
+                        </div>
+                        <div class="treatment-content">
+                            <h3>Peeling Químico Médico</h3>
+                            <p>Exfoliación médica para atenuar manchas de sol, unificar el tono y cerrar poros.</p>
+                            <div class="treatment-footer">
+                                <a href="https://wa.me/525551031472?text=Informes%20sobre%20Peeling" class="treatment-link">Agendar protocolo &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="treatment-card">
+                        <div class="treatment-img-box">
+                            <span class="treatment-tag">Clínica</span>
+                            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80" alt="Dermatología Clínica" class="treatment-img">
+                        </div>
+                        <div class="treatment-content">
+                            <h3>Dermatología Clínica</h3>
+                            <p>Diagnóstico y tratamiento médico especializado para acné activo, rosácea y revisión de piel.</p>
+                            <div class="treatment-footer">
+                                <a href="https://wa.me/525551031472?text=Informes%20sobre%20Consulta" class="treatment-link">Agendar consulta &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="treatment-card">
+                        <div class="treatment-img-box">
+                            <span class="treatment-tag">Lifting</span>
+                            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" alt="Radiofrecuencia" class="treatment-img">
+                        </div>
+                        <div class="treatment-content">
+                            <h3>Radiofrecuencia & Colágeno</h3>
+                            <p>Estimulación térmica inductora de colágeno para combatir la flacidez y suavizar líneas.</p>
+                            <div class="treatment-footer">
+                                <a href="https://wa.me/525551031472?text=Informes%20sobre%20Radiofrecuencia" class="treatment-link">Agendar protocolo &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCIA FACE SPA -->
+        <section id="experiencia" class="experience">
+            <div class="container experience-grid">
+                <div class="experience-img-grid">
+                    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Cabina de tratamiento" class="experience-img">
+                    <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=800&q=80" alt="Productos en clínica" class="experience-img">
+                </div>
+
+                <div class="experience-content">
+                    <span class="section-tag">El Santuario de tu Piel</span>
+                    <h2>Un oasis de calma médica en CDMX</h2>
+                    <p>En Face Spa concebimos el cuidado facial como un ritual holístico de salud y bienestar. Nuestras instalaciones están diseñadas bajo estándares de esterilidad clínica y una estética relajante.</p>
+                    
+                    <ul class="experience-bullets">
+                        <li>
+                            <span class="bullet-icon">✓</span>
+                            <div><strong>Cabinas Privadas:</strong> Ambientes insonorizados con aromaterapia clínica.</div>
+                        </li>
+                        <li>
+                            <span class="bullet-icon">✓</span>
+                            <div><strong>Protocolos de Higiene:</strong> Instrumental esterilizado e insumos desechables por paciente.</div>
+                        </li>
+                        <li>
+                            <span class="bullet-icon">✓</span>
+                            <div><strong>Seguimiento Digital:</strong> Monitoreo constante del progreso de tu piel.</div>
+                        </li>
+                    </ul>
+
+                    <a href="https://wa.me/525551031472?text=Hola,%20quisiera%20agendar%20mi%20visita" target="_blank" class="btn btn-primary">Conocer Experiencia Presencial</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIOS -->
+        <section id="testimonios" class="testimonials">
+            <div class="container">
+                <div class="text-center">
+                    <span class="section-tag">Pacientes Satisfechos</span>
+                    <h2 class="section-title">Historias de Transformación</h2>
+                    <p class="section-subtitle">La confianza de nuestros pacientes es nuestro mayor aval.</p>
+                </div>
+
+                <div class="grid-3">
+                    <div class="testimonial-card">
+                        <div class="rating">★★★★★</div>
+                        <p class="testimonial-text">"Llevaba años luchando contra el acné adulto. En Face Spa no solo me dieron un tratamiento en cabina increíble, sino la rutina de casa que salvó mi piel."</p>
+                        <div class="author-box">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Sofía M." class="author-avatar">
+                            <div class="author-info">
+                                <h4>Sofía M.</h4>
+                                <span>Paciente de Roma Norte</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="rating">★★★★★</div>
+                        <p class="testimonial-text">"El protocolo Hydra-Glow antes de mis eventos es imprescindible. Salgo con la piel superhidratada y una textura suave. Muy profesionales."</p>
+                        <div class="author-box">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Carlos R." class="author-avatar">
+                            <div class="author-info">
+                                <h4>Carlos R.</h4>
+                                <span>Paciente de Polanco</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="rating">★★★★★</div>
+                        <p class="testimonial-text">"Me encantó que no intentan venderte productos innecesarios. Te hacen un escaneo digital y te explican exactamente qué necesita tu piel."</p>
+                        <div class="author-box">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80" alt="Mariana G." class="author-avatar">
+                            <div class="author-info">
+                                <h4>Mariana G.</h4>
+                                <span>Paciente de Condesa</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UBICACIÓN -->
+        <section id="ubicacion" class="location">
+            <div class="container">
+                <div class="text-center">
+                    <span class="section-tag">Visítanos</span>
+                    <h2 class="section-title">Ubicación y Horarios</h2>
+                    <p class="section-subtitle">Ubicados en una de las zonas más conectadas de la Ciudad de México.</p>
+                </div>
+
+                <div class="location-grid">
+                    <div class="location-info">
+                        <div class="info-group">
+                            <div class="info-icon">📍</div>
+                            <div class="info-text">
+                                <h4>Dirección</h4>
+                                <p>Nte. 28 lote 2-mz 884<br>Santiago, 56615 Valle de Chalco<br>Solidaridad, Méx.</p>
+                            </div>
+                        </div>
+
+                        <div class="info-group">
+                            <div class="info-icon">🕒</div>
+                            <div class="info-text">
+                                <h4>Horarios</h4>
+                                <ul>
+                                    <li>Lunes a Viernes: 09:00 - 21:00 hrs</li>
+                                    <li>Sábados: 09:00 - 13:00 hrs</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="info-group">
+                            <div class="info-icon">📞</div>
+                            <div class="info-text">
+                                <h4>Contacto</h4>
+                                <p>WhatsApp: +52 55 51031472<br>Email: contacto@facespa.com</p>
+                            </div>
+                        </div>
+
+                        <a href="https://maps.google.com" target="_blank" class="btn btn-accent" style="width: 100%;">Abrir en Google Maps</a>
+                    </div>
+
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.5299465906887!2d-98.9507065252149!3d19.302797081949002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce1df458161919%3A0x38df15fe977cd14f!2sSPA%20Dermatocosmetica%20YUMBREL!5e0!3m2!1ses-419!2smx!4v1785350520368!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- WHATSAPP FLOTANTE PROFESIONAL & DINÁMICO -->
+    <div class="whatsapp-container">
+        <div class="whatsapp-tooltip">
+            <span class="whatsapp-status-dot"></span>
+            ¿Dudas? Chatea con nosotros
+        </div>
+        <a href="https://wa.me/525551031472?text=Hola,%20me%20gustaria%20agendar%20una%20cita" class="whatsapp-float" target="_blank" aria-label="Contacto por WhatsApp">
+            <svg viewBox="0 0 32 32">
+                <path d="M16 2a13 13 0 0 0-11 19.8L3 29l7.3-1.9A13 13 0 1 0 16 2zm6.6 18.2c-.3.8-1.7 1.5-2.4 1.6-.6.1-1.4.2-4.5-1-3.9-1.6-6.4-5.6-6.6-5.8-.2-.2-1.6-2.1-1.6-4 0-1.9 1-2.8 1.3-3.2.3-.4.8-.5 1.1-.5h.8c.3 0 .6 0 .9.7.3.7 1.1 2.6 1.2 2.8.1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.4-.2.8.5.8 1.5 2.1 2.8 2.8 1.6.9 2.5 1 2.9.8.4-.2 1-.8 1.3-1.3.3-.5.7-.4 1.1-.2.4.2 2.5 1.2 2.9 1.4.4.2.7.3.8.5.1.3 0 1.2-.3 2z"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="logo-text">Face Spa</span>
+                    <p>Clínica dermatológica y centro de estética facial de alta precisión en la Ciudad de México.</p>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Navegación</h4>
+                    <ul class="footer-links">
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#tratamientos">Tratamientos</a></li>
+                        <li><a href="#experiencia">Experiencia</a></li>
+                        <li><a href="#ubicacion">Ubicación</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Servicios</h4>
+                    <ul class="footer-links">
+                        <li><a href="#tratamientos">Hydra-Glow</a></li>
+                        <li><a href="#tratamientos">Peeling Médico</a></li>
+                        <li><a href="#tratamientos">Dermatología Clínica</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Citas</h4>
+                    <p style="font-size: 0.875rem; color: rgba(255,255,255,0.7); margin-bottom: 16px;">Agenda tu consulta directamente vía WhatsApp para recibir atención personalizada.</p>
+                    <a href="https://wa.me/5255031471" target="_blank" class="btn btn-accent">Enviar Mensaje</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Face Spa CDMX. Todos los derechos reservados.</p>
+                <div class="footer-legal">
+                    <a href="#">Aviso de Privacidad</a>
+                    <a href="#">Términos y Condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
